@@ -5,7 +5,7 @@ dotenv.config();
 
 function jwtValidator(req, res, next) {
   try {
-    const token = req.headers.token;
+    const token = req.headers.token
     if (!token) {
       res.status(403).json({
         data: "Invalid",

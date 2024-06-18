@@ -16,7 +16,7 @@ async function loginController(req, res) {
       [email, password]
     );
 
-    if (!userCheck.rows) {
+    if (userCheck.rows.length === 0) {
       return res.status(402).json({
         data: "User not found",
       });
@@ -30,13 +30,14 @@ async function loginController(req, res) {
       user_id: user_id,
     });
 
-    res.status(200).json({
+    return res.status(200).json({
       data: token,
       email: email,
       name: userCheck.rows[0].name,
       college: userCheck.rows[0].college,
     });
   } catch (error) {
+    console.log(error);
     res.status(502).json(error);
   }
 }
